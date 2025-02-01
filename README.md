@@ -1,12 +1,10 @@
 # ShoppyGlobe
 
 ## Overview
-ShoppyGlobe is a responsive e-commerce web application built with React, Redux, and Tailwind CSS. It allows users to browse products, view details, add items to the cart, and make purchases. It features lazy loading, dynamic product stock management, and responsive design for seamless user experience across devices. 
+ShoppyGlobe is a responsive e-commerce web application built with React, Redux, and Tailwind CSS. It allows users to browse products, view details, add items to the cart, and remove the items from the cart as needed. It features lazy loading, dynamic product stock management, and responsive design for seamless user experience across devices. 
 
 ## Features
 - **Product Search**: Search for items in the store using the search bar.
-
-- **Product Listing**: Display a list of products with images, titles, and prices.
 
 - **Product Details**: View detailed information about each product by clicking on the product.
 
