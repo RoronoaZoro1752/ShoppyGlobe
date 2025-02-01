@@ -5,22 +5,25 @@ import ProductList from '../../components/ProductList';
 import { Link, useParams } from 'react-router-dom';
 
 function Product(){
-    const {id} = useParams();
-    const dispatch = useDispatch();
-    const { products, status, error } = useSelector((state) => state.product);
-    const [productName, setProductName] = useState("");
-    const [filtered, setFiltered] = useState([]);
+    const {id} = useParams(); //Get the 'id' parameter from the url.
+    const dispatch = useDispatch(); //Get the dispatch function to dispatch the actions.
+    const { products, status, error } = useSelector((state) => state.product); //Access products, status and error from the redux store.
+    const [productName, setProductName] = useState(""); //State to manage search query.
+    const [filtered, setFiltered] = useState([]); //State to store filtered products based on the search query.
 
     useEffect(() => {
+        //Fetch the products if they are not already loaded in the redux store.
         if(products.length === 0){
             dispatch(fetchProducts())
         }
     }, [dispatch, products])
     
     useEffect(() => {
+        //Filter based on search query.
         if(!productName){
             setFiltered(products);
         }else{
+            //Filter the products based on tags or title matching the search query.
             setFiltered(
                 products.filter((product) => (
                     product.title.toLowerCase().includes(productName.toLowerCase()) ||

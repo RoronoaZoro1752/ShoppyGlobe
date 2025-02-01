@@ -6,21 +6,24 @@ import { updateProductStock } from "../app/features/productSlice";
 function CartDetailItem({ image, title, price, quantity, id}) {
 
     let dispatch = useDispatch();
-    let {products} = useSelector((state) => state.product);
+    let {products} = useSelector((state) => state.product); //Access products from the Redux store.
 
+    //Find the product in the product list using its id. 
     let indiProduct = products.find((product) => (
         product.id == parseInt(id)
     ))
 
+    //Function to handle adding an item to the cart.
     function handleAddtoCart() {
         if(indiProduct && indiProduct.stock > 0){
             dispatch(addToCart(indiProduct));
             setTimeout(() => {
                 dispatch(updateProductStock({id: indiProduct.id, stockChange: -1}))
-            }, 100);
+            }, 100); //Redux works synchronously, which leads to race conditions. To avoid this condition we add a delay.
         }
     }
 
+    //Function to handle decreasing item quantity
     function handleDecrease() {
         if(indiProduct && quantity > 1){
             dispatch(decrease(indiProduct));
@@ -30,6 +33,7 @@ function CartDetailItem({ image, title, price, quantity, id}) {
         }
     }
 
+    //Function to handle removing an item from the cart
     function handleRemoveFromCart() {
         if(indiProduct){
             dispatch(removeFromCart(indiProduct));

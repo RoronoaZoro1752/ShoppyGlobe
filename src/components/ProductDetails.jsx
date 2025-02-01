@@ -1,18 +1,19 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, Link } from "react-router-dom";
-import { addToCart } from "../app/features/cartSlice";
-import { updateProductStock } from "../app/features/productSlice";
+import { addToCart } from "../app/features/cartSlice"; //Import action to add the item to the cart.
+import { updateProductStock } from "../app/features/productSlice"; //Import the action to update the stocks in the products Slice.
 
 function ProductDetails(){
-    let {id} = useParams();
-    let {products} = useSelector((state) => state.product);
+    let {id} = useParams(); //Get the product Id from the url.
+    let {products} = useSelector((state) => state.product);  //Access products from the Redux store.
     let dispatch = useDispatch();
     
-
+    //Find the product that matches the ID from the url.
     let indiProduct = products.find((product) => (
         product.id == parseInt(id)
     ))
 
+    //Function to handle adding the product to the cart and updating the stocks of the products.
     function handleAddtoCart(){
         if(indiProduct.stock > 0){
             dispatch(addToCart(indiProduct))
@@ -21,7 +22,9 @@ function ProductDetails(){
             }, 100);
         }
     }
+
     return(
+        //Product details card.
         <div className="flex items-center justify-center mt-8">
         <div className="bg-white shadow-lg rounded-lg p-6 flex flex-col justify-center items-center w-96 border border-gray-200">
             <img src={indiProduct.images[0]} alt={indiProduct.title} className="h-48  object-cover rounded-md mb-4"/>

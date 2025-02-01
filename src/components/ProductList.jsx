@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 function ProductList({image, title, price}) {
-
+    //Container for each product that displays product details on the home/landing page.
     return(
         <div className=" bg-slate-300 flex flex-col justify-center items-center w-64 h-80 rounded-3xl transition hover:scale-105 duration-200 cursor-pointer">
             <img src={image} alt="" 
